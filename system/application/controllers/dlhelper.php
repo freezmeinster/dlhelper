@@ -31,6 +31,15 @@ class Dlhelper extends Controller {
         function Register(){
                 $this->template->template_loader();
         }
+        
+        function Latest_User(){
+                $this->template->template_loader();
+        }
+        
+        function error($message){
+                $this->template->template_loader($message);
+        }
+        
 }
 
 /* End of file welcome.php */

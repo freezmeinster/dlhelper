@@ -6,10 +6,11 @@ class Template extends Model {
         parent::Model();
     }
     
-    function template_loader(){
+    function template_loader($message = ''){
+       $data['message'] = $message;
        $base_url = base_url();
        $current_template = $this->config->item('template');
-       $this->load->view("$current_template/template.php");
+       $this->load->view("$current_template/template.php",$data);
     }
     
     function title(){
@@ -26,11 +27,11 @@ class Template extends Model {
        $class = 'Dlhelper';
        $site = strtolower(site_url("$class"));
        $controller = new ReflectionClass($class);
-       foreach($controller->getMethods() as $method)
-        {
+       $block = array("Dlhelper","index","get_instance","CI_Base","Controller","_ci_scaffolding","_ci_initialize","error");
+       foreach($controller->getMethods() as $method){
           $name = $method->name;
-          if ($name != $class && $name != "index" && $name != "get_instance" && $name != "CI_Base" && $name != "Controller" && $name != "_ci_scaffolding" && $name != "_ci_initialize"){
-          echo "<li><a href=\"$site/$name\">$name</a></li>";
+          if ( !in_array($name,$block )){
+           echo "<li><a href=$site/$name>$name</a></li>";
           }
         }
     }

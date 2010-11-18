@@ -1,6 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<?php $url = $this->uri->segment('2');?>
+<?php
+$url = $this->uri->segment('2');  
+?>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 <meta name="description" content="description"/>
@@ -35,6 +37,7 @@
 		
 		<div class="content">
                 <?php $this->template->content($url);?>
+                <?php echo $message;?>
 		</div>
 
 		<div class="navigation">
