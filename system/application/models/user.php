@@ -11,10 +11,16 @@ class User extends Model {
      redirect('/dlhelper/error/password tidak sama');
     }
     
+    $this->db->reconnect();
+    $cek_user = $this->db->query("select * from user where username like '$username'");
+    if ($cek_user->num_rows() > 0 ){
+      redirect('/dlhelper/error/User sudah ada');
+    }
+    $user_dir = $this->config->item('user_dir');
     $pass = sha1($pass1);
     $this->db->reconnect();
     $query = $this->db->query("insert into user(username,password,email,name) values('$username','$pass','$email','$name')");
-    $this->db->close();
+    mkdir("$user_dir/$username", 0700);
     redirect('/');
     }
     
@@ -42,6 +48,37 @@ class User extends Model {
     }
     
     function del_user(){
+    
+    }
+    
+    function login($user,$pass){
+     if ($user == '' || $pass == '' ){
+      redirect('/dlhelper/error/Username atau Password kosong');
+     }else if ($user != '' && $pass != ''){
+        $encpass = sha1($pass);
+        $this->db->reconnect();
+        $login = $this->db->query("select * from user where username like '$user' and password like '$encpass'");
+       
+        if ($login->num_rows() > 0 ){
+            $row = $login->row_array();
+            $id = $row['id_user'];
+            $newdata = array(
+                   'username'  =>  $user,
+                   'id'	       => $id,
+                   'password'  => $encpass
+               );
+            $this->session->set_userdata($newdata);
+            redirect('/dlhelper/profile');
+        }
+     }
+    
+    }
+    
+    function logout(){
+    
+    }
+    
+    function cek_session(){
     
     }
 }

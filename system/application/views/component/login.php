@@ -6,10 +6,10 @@ echo "window.location = \"$site/dlhelper/register\"";
 ?>
 }
 </script>
-<form action="" method="POST">
+<form action="<?php echo site_url();?>/user_mod/login" method="POST">
 <table class="login">
-<tr><td>Username</td><td>:</td><td><input type="text"></td></tr>
-<tr><td>Password</td><td>:</td><td><input type="text"></td></tr>
+<tr><td>Username</td><td>:</td><td><input type="text" name="username"></td></tr>
+<tr><td>Password</td><td>:</td><td><input type="password" name="password"></td></tr>
 <tr><td><input type="button" value="Register" onClick="hah()"></td><td></td><td><input type="submit" value="Login"></td></tr>
 </table>
 </form>

@@ -9,7 +9,7 @@ class Dlhelper extends Controller {
 	
 	function index()
 	{
-		$this->template->template_loader();
+		redirect('/dlhelper/home/');
 	}
          
         function Available_packages(){
@@ -40,6 +40,17 @@ class Dlhelper extends Controller {
                 $this->template->template_loader($message);
         }
         
+        function home(){
+                $this->template->template_loader();
+        }
+        
+        function profile(){
+                $this->template->template_loader();
+        }
+        
+        function admin(){
+                $this->template->template_loader();
+        }
 }
 
 /* End of file welcome.php */

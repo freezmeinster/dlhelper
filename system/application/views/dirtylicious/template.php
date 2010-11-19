@@ -37,7 +37,7 @@ $url = $this->uri->segment('2');
 		
 		<div class="content">
                 <?php $this->template->content($url);?>
-                <?php echo $message;?>
+                <strong style="color:red;"><?php echo $message;?></strong>
 		</div>
 
 		<div class="navigation">
