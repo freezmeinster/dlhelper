@@ -8,9 +8,7 @@ Cari paket aplikasi yang anda butuhkan. Kami akan mendonwloadkan semua temasuk d
 <tr><td>Distro</td><td>:</td><td>
 <select name="countries"  onChange="updatecities(this.selectedIndex)" >
 <option selected>Select A Distro</option>
-<option value="freebsd">FreeBSD</option>
-<option value="fedora">Fedora</option>
-<option value="ubuntu">Ubuntu</option>
+<?php $this->setting->distro();?>
 </select>
 </td></tr>
 <tr><td>Release</td><td>:</td><td>
@@ -31,9 +29,7 @@ var citieslist=document.package.cities
 
 var cities=new Array()
 cities[0]=""
-cities[1]=["7.2|7.2","8.0|8.0","8.1|8.1"]
-cities[2]=["10|10","11|11","12|12","13|13","14|14"]
-cities[3]=["9.04|9.04","9.10|9.10","10.04|10.04"]
+<?php $this->setting->release();?>
 
 function updatecities(selectedcitygroup){
 citieslist.options.length=0

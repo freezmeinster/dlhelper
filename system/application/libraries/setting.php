@@ -67,6 +67,45 @@ class Setting {
      }
     }
     
+    function distro(){
+     $CI =& get_instance();
+     $site = site_url();
+     $CI->load->database();
+     $CI->db->reconnect();
+     $query = $CI->db->query("select * from distro ");
+      foreach($query->result_array() as $row){
+        $id = $row['id_distro'];
+        $name = $row['name'];
+        echo "<option value=\"$id\">$name</option>";
+      }
+    }
+    
+    function release(){
+     $CI =& get_instance();
+     $site = site_url();
+     $CI->load->database();
+     $CI->db->reconnect();
+     $i=1;
+     $query = $CI->db->query("select * from distro ");
+      foreach($query->result_array() as $row){
+         $id = $row['id_distro'];
+         echo "cities[$i]=[";
+          $CI->db->reconnect();
+          $a=1;
+          $que = $CI->db->query("select * from distro d,release r where d.id_distro = r.id_distro and d.id_distro = $id ");
+           foreach($que->result_array() as $ro){
+            if ($a ==1 ){
+             $koma = '';
+             }else $koma = ',';
+            $code = $ro['r.kode'];
+            echo "$koma\"$code|$code\"";
+            $a++;
+           }
+         echo "]\n";
+         $i++;
+      }
+    }
+    
 }
 
 ?>

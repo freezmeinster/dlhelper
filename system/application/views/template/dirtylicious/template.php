@@ -58,7 +58,7 @@ $url = $this->uri->segment('2');
 	<div class="footer">
 
 		<span class="left">
-			&copy; 2007 <a href="index.html"><?php $this->template->title();?></a>.
+			&copy; 2007 <a href="<?php echo site_url();?>"><?php $this->template->title();?></a>.
 		</span>
 
 		<span class="right"><a href="http://templates.arcsin.se/">Website template</a> by <a href="http://arcsin.se/">Arcsin</a></span>
