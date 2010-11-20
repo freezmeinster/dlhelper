@@ -58,5 +58,9 @@ class Template extends Model {
        $current_template = $this->setting->get_setting('template');
        echo "$base_url/system/application/views/template/$current_template/";
     }
+    
+    function template_add(){
+      $this->load->view('component/js-style');
+    }
 }
 ?> 

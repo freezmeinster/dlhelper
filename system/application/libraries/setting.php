@@ -35,6 +35,38 @@ class Setting {
       echo "<tr><td><a href=\"$url\" rel=\"facebox\">$item</a></td><td>$value</td></tr>\n";
      }
     }
+    
+    function list_user(){
+     $CI =& get_instance();
+     $site = site_url();
+     $CI->load->database();
+     $CI->db->reconnect();
+     $url = "$site/system_mod";
+     $query = $CI->db->query("select * from user where username not like 'admin' ");
+     foreach ($query->result_array() as $row){
+      $username = $row['username'];
+      $email = $row['email'];
+      $name = $row['name'];
+      $id = $row['id_user'];
+      $level = $row['level'];
+      echo "<tr><td>$username</td><td>$name</td><td>$email</td><td>$level</td><td><a href=\"$url/edit_user/$id\" rel=\"facebox\">Edit</a>||<a href=\"$url/delete_user/$id/0\" rel=\"facebox[.bolder]\">Hapus</a></td><tr> \n";
+     }
+     }
+     
+     function list_distro(){
+     $CI =& get_instance();
+     $site = site_url();
+     $CI->load->database();
+     $CI->db->reconnect();
+     $url = "$site/system_mod/template_setting/";
+     $query = $CI->db->query("select * from distro ");
+     foreach ($query->result_array() as $row){
+      $name = $row['name'];
+      $id = $row['id_distro'];
+      echo "<tr><td><a href=\"\" rel=\"facebox\">$name</a></td><td><a href=\"\" rel=\"facebox\">Edit</a> || <a href=\"\" rel=\"facebox\">Tambah Release</a> || <a href=\"\" rel=\"facebox\">Hapus</a></td><tr>";
+     }
+    }
+    
 }
 
 ?>

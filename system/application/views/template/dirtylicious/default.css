@@ -181,7 +181,7 @@ h1,h2,h3 {padding-top: 6px; color: #553; margin-bottom: 4px;}
 .navigation h2 {
 	color: #5A5A43;
 	font: bold 1.1em Tahoma,sans-serif;
-	line-height: 30px;
+/* 	line-height: 30px; */
 	margin: 0;
 	padding-left: 12px;
 }

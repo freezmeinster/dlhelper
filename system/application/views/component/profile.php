@@ -29,10 +29,21 @@ if ($level == 'user'){
     echo "<form>\n";
     }
 }else if($level == 'admin'){
-    echo "<h3>Selamat datang <strong style=\"color:blue;\"> $name</strong></h3>\n";
+    echo "<h3>Selamat datang <strong style=\"color:blue;\"> $name</strong></h3><br>\n";
+    echo "Setting Editor";
     echo "<table class=\"perlu\">\n";
     echo "<tr class=\"perlu\" ><th>Item</th><th>Value</th></tr>\n";
     $this->setting->list_setting();
+    echo "</table>\n";
+    echo "<br>User Editor";
+    echo "<table class=\"perlu\">\n";
+    echo "<tr><th>Username</th><th>Nama</th><th>Email</th><th>Level</th><th>Pilihan</th></tr>\n";
+    $this->setting->list_user();
+    echo "</table>\n";
+    echo "<br>Distro & Release Editor";
+    echo "<table class=\"perlu\">\n";
+    echo "<tr><th>Nama Distro</th><th>Pilihan</th></tr>\n";
+    $this->setting->list_distro();
     echo "</table>\n";
 }
 ?>

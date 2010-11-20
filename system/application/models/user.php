@@ -16,7 +16,7 @@ class User extends Model {
     if ($cek_user->num_rows() > 0 ){
       redirect('/dlhelper/error/User sudah ada');
     }
-    $user_dir = $this->config->item('user_dir');
+    $user_dir = $this->setting->get_setting('user_dir');
     $pass = sha1($pass1);
     $this->db->reconnect();
     $query = $this->db->query("insert into user(username,password,email,name) values('$username','$pass','$email','$name')");
