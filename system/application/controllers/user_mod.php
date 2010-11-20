@@ -29,7 +29,7 @@ class User_mod extends Controller {
 	
 	function upload(){
 	$username = $this->session->userdata('username');
-	$user_dir = $this->config->item('user_dir');
+	$user_dir = $this->setting->get_setting('user_dir');
 	
 	$config['upload_path'] = "$user_dir/$username";
 	$config['allowed_types'] = "text|txt";

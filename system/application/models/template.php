@@ -9,30 +9,36 @@ class Template extends Model {
     function template_loader($message = ''){
        $data['message'] = $message;
        $base_url = base_url();
-       $current_template = $this->config->item('template');
-       $this->load->view("$current_template/template.php",$data);
+       $current_template = $this->setting->get_setting('template');
+       $this->load->view("template/$current_template/template.php",$data);
     }
     
     function title(){
-       $title = $this->config->item('site_name');
+       $title = $this->setting->get_setting('site_name');
        echo $title;
     }
 
     function slogan(){
-       $slogan = $this->config->item('site_slogan');
+       $slogan = $this->setting->get_setting('slogan');
        echo $slogan;
     }
+ 
 
     function menu(){
+       $id = $this->session->userdata('id');
        $class = 'Dlhelper';
        $site = strtolower(site_url("$class"));
        $controller = new ReflectionClass($class);
-       $block = array("Dlhelper","index","get_instance","CI_Base","Controller","_ci_scaffolding","_ci_initialize","error","profile","admin","home");
+       $block = array("Dlhelper","index","get_instance","CI_Base","Controller","_ci_scaffolding","_ci_initialize","error","profile","admin","home","Logout");
        foreach($controller->getMethods() as $method){
           $name = $method->name;
           if ( !in_array($name,$block )){
            echo "<li><a href=$site/$name>$name</a></li>";
           }
+        }
+        if ($id != ''){
+          echo "<li><a href=$site/Logout>Logout</a></li>";
+          echo "<li><a href=$site/profile>Profile</a></li>";
         }
     }
    
@@ -49,8 +55,8 @@ class Template extends Model {
 
     function template_base(){
        $base_url = base_url();
-       $current_template = $this->config->item('template');
-       echo "$base_url/system/application/views/$current_template/";
+       $current_template = $this->setting->get_setting('template');
+       echo "$base_url/system/application/views/template/$current_template/";
     }
 }
 ?> 

@@ -69,16 +69,36 @@ class User extends Model {
                );
             $this->session->set_userdata($newdata);
             redirect('/dlhelper/profile');
-        }
+        }else redirect('/dlhelper/error/Username atau Password tidak cocok');
      }
     
     }
     
     function logout(){
-    
+     $this->session->sess_destroy();
+     redirect('/');
     }
     
-    function cek_session(){
-    
+    function cek_session($admin = ''){
+    $id = $this->session->userdata('id');
+    $username = $this->session->userdata('username');
+    $password = $this->session->userdata('password');
+    if ($id == ''){
+      redirect('dlhelper/login');
+    }if ($id != '' ){
+      $this->db->reconnect();
+      $query = $this->db->query("select * from user where id_user = $id");
+      $row = $query->row_array();
+      $user = $row['username'];
+      $pass = $row['password'];
+      $level = $row['level'];
+       if ($user != $username && $password != $pass){
+         redirect('dlhelper/login');
+       }
+       if ($admin == 'admin' && $level == 'admin'){}
+       else if ($admin == ''){}
+       else redirect('dlhelper/error/Halaman khusus admin');
+       
+    }  
     }
 }

@@ -11,12 +11,10 @@ class Dlhelper extends Controller {
 	{
 		redirect('/dlhelper/home/');
 	}
-         
-        function Available_packages(){
-                $this->template->template_loader();
-        } 
+          
                      
         function Get_packages(){
+                $this->user->cek_session();
                 $this->template->template_loader();
         }
 
@@ -25,7 +23,7 @@ class Dlhelper extends Controller {
         }
 
         function Logout(){
-                $this->template->template_loader();
+                $this->user->logout();
         }
 
         function Register(){
@@ -49,6 +47,7 @@ class Dlhelper extends Controller {
         }
         
         function admin(){
+                $this->user->cek_session('admin');
                 $this->template->template_loader();
         }
 }
