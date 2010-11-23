@@ -29,7 +29,7 @@ class Template extends Model {
        $class = 'Dlhelper';
        $site = strtolower(site_url("$class"));
        $controller = new ReflectionClass($class);
-       $block = array("Dlhelper","index","get_instance","CI_Base","Controller","_ci_scaffolding","_ci_initialize","error","profile","admin","home","Logout");
+       $block = array("Dlhelper","index","get_instance","CI_Base","Controller","_ci_scaffolding","_ci_initialize","error","profile","admin","home","Logout","user_admin");
        foreach($controller->getMethods() as $method){
           $name = $method->name;
           if ( !in_array($name,$block )){

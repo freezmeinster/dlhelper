@@ -43,6 +43,7 @@ class Dlhelper extends Controller {
         }
         
         function profile(){
+                $this->user->cek_session();
                 $this->template->template_loader();
         }
         
@@ -50,6 +51,11 @@ class Dlhelper extends Controller {
                 $this->user->cek_session('admin');
                 $this->template->template_loader();
         }
+        function user_admin(){
+                $this->user->cek_session('admin');
+                $this->template->template_loader();
+        }
+        
 }
 
 /* End of file welcome.php */

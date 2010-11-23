@@ -114,7 +114,7 @@ class System_mod extends Controller {
 	}
 	$this->db->reconnect();
 	$this->db->query($query);
-	redirect('dlhelper/profile');
+	redirect('dlhelper/user_admin');
 	}
 	
 	function delete_user($id,$stat){
@@ -134,5 +134,13 @@ class System_mod extends Controller {
 	   rmdir("$user_dir/$username");
 	   redirect('dlhelper/profile');
 	}
+	}
+	
+	function add_repo(){
+	 $this->load->view('component/upload_repo');
+	}
+	
+	function set_repo(){
+	
 	}
 }

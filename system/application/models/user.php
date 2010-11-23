@@ -26,9 +26,9 @@ class User extends Model {
     
     function list_user($limit=null,$kind){
       if ($limit != null){
-          $query = "select * from user order by id_user desc limit $limit";
+          $query = "select * from user where username not like 'admin' order by id_user desc limit $limit ";
       }else if($limit == null){
-          $query = "select * from order by id_user desc user ";
+          $query = "select * from where username not like 'admin' order by id_user desc user ";
       }
       
       $this->db->reconnect();
@@ -47,9 +47,6 @@ class User extends Model {
     
     }
     
-    function del_user(){
-    
-    }
     
     function login($user,$pass){
      if ($user == '' || $pass == '' ){

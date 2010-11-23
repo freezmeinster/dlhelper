@@ -29,10 +29,11 @@ class Setting {
      foreach ($query->result_array() as $row){
       $item = $row['item'];
       $value = $row['value'];
+      $hint = $row['hint'];
        if ($item == 'template'){
          $url = "$site/system_mod/template_setting/";
        }else $url = "$site/system_mod/edit_setting/$item";
-      echo "<tr><td><a href=\"$url\" rel=\"facebox\">$item</a></td><td>$value</td></tr>\n";
+      echo "<tr><td rel=\"tooltip\" title=\"$hint\" ><a href=\"$url\" rel=\"facebox\">$item</a></td><td>$value</td></tr>\n";
      }
     }
     
@@ -79,6 +80,7 @@ class Setting {
         echo "<option value=\"$id\">$name</option>";
       }
     }
+
     
     function release(){
      $CI =& get_instance();
