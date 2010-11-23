@@ -137,10 +137,48 @@ class System_mod extends Controller {
 	}
 	
 	function add_repo(){
+	$this->user->cek_session('admin');
 	 $this->load->view('component/upload_repo');
 	}
 	
 	function set_repo(){
+	$this->user->cek_session('admin');
 	
 	}
+	
+	function list_edit_release($id){
+	$this->user->cek_session('admin');
+	echo "<h3>Release dari Distro</h3>\n";
+	echo "<table class=\"perlu\"><tr><th>Nama Release</th><th>Aksi</th></tr>\n";
+	$site = site_url();
+	$this->db->reconnect();
+	$query = $this->db->query("select * from distro d,release r where d.id_distro=r.id_distro and d.id_distro=$id");
+	 foreach($query->result_array() as $row){
+	   $kode = $row['r.kode'];
+	   $id = $row['d.id_distro'];
+	   echo "<tr><td>$kode</td><td><a href=\"$site/system_mod/del_release/$id\">Hapus</a></td></tr>";
+	 }
+	 echo "</table>\n";
+	}
+	
+	function edit_distro($id){
+	$site = site_url();
+	$this->user->cek_session('admin');
+	 echo "<form action=\"$site/system_mod/set_distro/$id\" method=\"POST\"><table>";
+	 echo "<tr><td><input type=\"text\" name=\"distro\"></td></tr>";
+	 echo "</table></form>";
+	}
+	
+	function set_distro($id){
+	$this->user->cek_session('admin');
+	$distro = $this->input->post('distro');
+	$this->db->reconnect();
+	$query = $this->db->query("update distro set name='$distro' where id_distro = $id");
+	redirect('dlhelper/admin');
+	}
+	
+	function del_distro($id){
+	$this->user->cek_session('admin');
+	}
 }
+?>

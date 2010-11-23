@@ -64,7 +64,10 @@ class Setting {
      foreach ($query->result_array() as $row){
       $name = $row['name'];
       $id = $row['id_distro'];
-      echo "<tr><td><a href=\"\" rel=\"facebox\">$name</a></td><td><a href=\"\" rel=\"facebox\">Edit</a> || <a href=\"\" rel=\"facebox\">Tambah Release</a> || <a href=\"\" rel=\"facebox\">Hapus</a></td><tr>";
+       echo "<tr><td><a href=\"$site/system_mod/list_edit_release/$id\" rel=\"facebox\">$name</a></td>";
+       echo "<td><a href=\"$site/system_mod/edit_distro/$id\" rel=\"facebox\">Edit</a> ||";
+       echo "<a href=\"\" rel=\"facebox\">Tambah Release</a> ||"; 
+       echo "<a href=\"\" rel=\"facebox\">Hapus</a></td><tr>";
      }
     }
     
@@ -106,8 +109,7 @@ class Setting {
          echo "]\n";
          $i++;
       }
-    }
-    
+    }   
 }
 
 ?>
